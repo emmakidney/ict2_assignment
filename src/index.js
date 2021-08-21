@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import HomePage from "./pages/homePage";
+import BookDetailsPage from './pages/bookDetailsPage';
 
 const sample = { 
 
@@ -24,10 +25,17 @@ const sample = {
 
 const books = [sample, sample, sample, sample, sample, sample, sample];
 
+const images = [
+    "https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/The_Gangster_%28Clive_Cussler%29.jpg/220px-The_Gangster_%28Clive_Cussler%29.jpg",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/The_Gangster_%28Clive_Cussler%29.jpg/220px-The_Gangster_%28Clive_Cussler%29.jpg",
+];
+
 const App = () => {
     return (
-        <HomePage books={books} />
+        <BookDetailsPage book={sample} images={images} />
     );
 };
+
+
 
 ReactDOM.render(<App />, document.getElementById("root"));
