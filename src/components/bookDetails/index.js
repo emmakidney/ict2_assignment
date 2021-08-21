@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import MonetizationIcon from "@material-ui/icons/MonetizationOn";
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import NavigationIcon from "@material-ui/icons/Navigation";
+import CakeIcon from '@material-ui/icons/Cake';
 import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -50,6 +51,10 @@ const BookDetails = ( props) => {
         <Chip
           icon={<TrendingUpIcon />}
           label={`${book.rank}`}
+        />
+        <Chip
+          icon={<CakeIcon />}
+          label={`${book.age_group}`}
         />
         <Chip label={`Released: ${book.created_date}`} />
       </Paper>
