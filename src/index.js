@@ -8,7 +8,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/books/:primary_isbn13" component={BookPage} />
+        <Route path="/books/:title" component={BookPage} />
         <Route path="/" component={HomePage} />
         <Redirect from="*" to="/" />
       </Switch>

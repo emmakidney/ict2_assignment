@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -30,10 +30,32 @@ export default function FilterBookCard(props) {
   const classes = useStyles();
 
   const genres = [
-    {id: 1, name: "Animation"},
-    {id: 2, name: "Comedy"},
-    {id: 3, name: "Thriller"}
+    {id: 1, name: "Best Sellers"},
+    {id: 2, name: "Ages 8 to 12"},
+    {id: 3, name: "Ages 10 to 18"},
+    {id: 3, name: "Good Value"}
   ]
+
+  useEffect(() => {
+      fetch( 
+        "https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?age-group={name}&api-key=" 
+        + process.env.REACT_APP_NYT_KEY
+      )
+      .then(res => res.json())
+      .then(json => {
+        // console.log(json.genres) 
+        return json.title
+      });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleChange = (e, type, value) => {
+    e.preventDefault()
+    // Completed later
+  };
+  const handleTextChange = e => {
+    handleChange(e, "name", e.target.value)
+  }
 
   return (
     <Card className={classes.root} variant="outlined">
@@ -47,7 +69,9 @@ export default function FilterBookCard(props) {
           id="filled-search"
           label="Search field"
           type="search"
+          value={props.titleFilter}
           variant="filled"
+          onChange={handleTextChange}
         />
         <FormControl className={classes.formControl}>
           <InputLabel id="genre-label">Genre</InputLabel>

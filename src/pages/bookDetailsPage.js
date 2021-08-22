@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
-import img from "../images/book-cover-placeholder.png";
+import image from "../images/book-cover-placeholder.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,9 +21,9 @@ const useStyles = makeStyles((theme) => ({
 
 const BookPage = (props) => {
   const classes = useStyles();
-  const { title } = props.match.params;
+  const title = props.match.params;
   const [book, setBook] = useState(null);
-  const image = img;
+  const dataImage = [{ img: image }] 
 
   useEffect(() => {
     fetch(
@@ -52,27 +52,23 @@ const BookPage = (props) => {
                   className={classes.gridList}
                   cols={1}
                 >
-                  {(image) => (
+                   {dataImage.map((image) => (
                     <GridListTile
-                      key={image}
+                      key={image.file_path}
                       className={classes.gridListTile}
                       cols={1}
                     >
                       <img
-                        src={`${book.title}`}
-                        alt={image}
+                        src={`https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80}`}
+                        alt={dataImage.img}
                       />
                     </GridListTile>
-                  )}
+                   ))}
                 </GridList>
               </div>
             </Grid>
             <Grid item xs={9}>
               <BookDetails book={book} />
-              <img
-              src={`${book.title}`}
-              alt={image}
-          />
             </Grid>
           </Grid>
         </>

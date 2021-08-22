@@ -27,6 +27,8 @@ const useStyles = makeStyles({
 export default function BookCard(props) {
   const classes = useStyles();
   const book = props.book;
+  const title = book.title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+
   return (
     <Card className={classes.card}>
       <CardHeader className={classes.header} title={book.title} />
@@ -56,7 +58,7 @@ export default function BookCard(props) {
         <IconButton aria-label="add to favorites" onClick={null}>
           <FavoriteIcon color="primary" fontSize="large" />
         </IconButton>
-        <Link to={`/books/${book.title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-')}`}>
+        <Link to={`/books/${title}`}>
         <Button variant="outlined" size="medium" color="primary">
           More Info ...
         </Button>
