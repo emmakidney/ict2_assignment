@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -13,6 +14,7 @@ import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import img from '../../images/book-cover-placeholder.png'
+
 
 const useStyles = makeStyles({
   card: { maxWidth: 345 },
@@ -31,9 +33,7 @@ export default function BookCard(props) {
       <CardMedia
         className={classes.media}
         image={
-          book.list_image
-          ? `${book.list_image}`
-          : img
+          img
         }
       />
       <CardContent>
@@ -41,13 +41,13 @@ export default function BookCard(props) {
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {book.created_date}
+              {book.author}
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <TrendingUpIcon fontSize="small" />
-              {"  "} {book.rank}{" "}
+              {"  "} {book.publisher}{" "}
             </Typography>
           </Grid>
         </Grid>
@@ -56,9 +56,11 @@ export default function BookCard(props) {
         <IconButton aria-label="add to favorites" onClick={null}>
           <FavoriteIcon color="primary" fontSize="large" />
         </IconButton>
+        <Link to={`/books/${book.title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-')}`}>
         <Button variant="outlined" size="medium" color="primary">
           More Info ...
         </Button>
+        </Link>
       </CardActions>
     </Card>
   );

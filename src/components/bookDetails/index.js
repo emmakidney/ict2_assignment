@@ -46,17 +46,17 @@ const BookDetails = ( props) => {
       <Paper component="ul" className={classes.root}>
         <Chip
           icon={<MonetizationIcon />}
-          label={`${book.price.toLocaleString()}`}
+          label={`${book.price}`}
         />
         <Chip
           icon={<TrendingUpIcon />}
-          label={`${book.rank}`}
+          label={`${book.publisher}`}
         />
         <Chip
           icon={<CakeIcon />}
           label={`${book.age_group}`}
         />
-        <Chip label={`Released: ${book.created_date}`} />
+        <Chip label={`Author: ${book.author}`} />
       </Paper>
 
       <Fab
