@@ -7,6 +7,7 @@ import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import image from "../images/book-cover-placeholder.png";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -25,6 +26,8 @@ const BookPage = (props) => {
   const [book, setBook] = useState(null);
   const dataImage = [{ img: image }] 
 
+  // .toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-'); change to lower case and replace spaces with -
+
   useEffect(() => {
     fetch(
         `https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?title=${title}&api-key=${process.env.REACT_APP_NYT_KEY} `
@@ -33,7 +36,7 @@ const BookPage = (props) => {
         return res.json();
       })
       .then((book) => {
-        // console.log(book)
+     console.log(book)
         setBook(book);
       });
   }, [title]);

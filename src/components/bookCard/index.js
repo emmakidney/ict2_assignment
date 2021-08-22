@@ -14,7 +14,7 @@ import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import img from '../../images/book-cover-placeholder.png'
-
+import Avatar from "@material-ui/core/Avatar";
 
 const useStyles = makeStyles({
   card: { maxWidth: 345 },
@@ -29,9 +29,28 @@ export default function BookCard(props) {
   const book = props.book;
   const title = book.title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
 
+  const handleAddToFavorite = (e) => {
+    e.preventDefault();
+    props.selectFavorite(book.title);
+  };
+
   return (
     <Card className={classes.card}>
-      <CardHeader className={classes.header} title={book.title} />
+      <CardHeader
+      className={classes.header}
+      avatar={
+        book.favorite ? (
+          <Avatar className={classes.avatar}>
+            <FavoriteIcon />
+          </Avatar>
+        ) : null
+      }
+      title={
+        <Typography variant="h5" component="p">
+          {book.title}{" "}
+        </Typography>
+      }
+    />
       <CardMedia
         className={classes.media}
         image={
@@ -55,9 +74,9 @@ export default function BookCard(props) {
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={null}>
-          <FavoriteIcon color="primary" fontSize="large" />
-        </IconButton>
+      <IconButton aria-label="add to favorites" onClick={handleAddToFavorite}>
+        <FavoriteIcon color="primary" fontSize="large" />
+    </IconButton>
         <Link to={`/books/${title}`}>
         <Button variant="outlined" size="medium" color="primary">
           More Info ...

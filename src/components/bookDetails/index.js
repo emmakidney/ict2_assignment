@@ -1,9 +1,10 @@
 import React from "react";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
-import MonetizationIcon from "@material-ui/icons/MonetizationOn";
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import PrintIcon from '@material-ui/icons/Print';
 import NavigationIcon from "@material-ui/icons/Navigation";
+import CreateIcon from '@material-ui/icons/Create';
 import CakeIcon from '@material-ui/icons/Cake';
 import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BookDetails = ( props) => {
+const BookDetails = (props) => {
   const classes = useStyles();
   const book = props.book
 
@@ -45,18 +46,20 @@ const BookDetails = ( props) => {
 
       <Paper component="ul" className={classes.root}>
         <Chip
-          icon={<MonetizationIcon />}
-          label={`${book.price}`}
+          icon={<AttachMoneyIcon />}
+          label={`Price: ${book.price}`}
         />
         <Chip
-          icon={<TrendingUpIcon />}
+          icon={<PrintIcon />}
           label={`${book.publisher}`}
         />
         <Chip
           icon={<CakeIcon />}
           label={`${book.age_group}`}
         />
-        <Chip label={`Author: ${book.author}`} />
+        <Chip 
+        icon={<CreateIcon />}
+        label={`Author: ${book.author}`} />
       </Paper>
 
       <Fab
